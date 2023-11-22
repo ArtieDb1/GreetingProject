@@ -15,7 +15,7 @@ public class Greeting {
 
     //this is the entry point - "where the program starts"
     //only one in the whole program
-    public static void main( String[] args )
+    public static void main (String[] args )
     {
          /**
      * method that is public
@@ -30,22 +30,30 @@ public class Greeting {
      * int value to the object type of the primitive which is why you can store big numbers as an int
      * **/
 
-         int timeOfDay = 21; //int type variable and
-        System.out.println(getGreeting(21));
+         int timeOfDay = 25; //int type variable and
+
+        try {
+            System.out.println(getGreeting(timeOfDay));
+        } catch (InvalidTimeException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
-    public static String getGreeting(int timeOfDay) {
+    public static String getGreeting(int timeOfDay) throws InvalidTimeException {
         //the little sections of a big problem don't being solved are private
         String greeting;
         if (timeOfDay >= 5 && timeOfDay <= 12) {
             greeting = "Good morning!";
         }
-        else if (timeOfDay >= 12 && timeOfDay <= 18) {
+        else if (timeOfDay > 12 && timeOfDay <= 18) {
             greeting ="Good afternoon!";
         }
-        else {
+        else if (timeOfDay >18 && timeOfDay<24){
             greeting = "Good evening!";
+        }
+        else {
+            throw new InvalidTimeException();
         }
 
         return greeting;
